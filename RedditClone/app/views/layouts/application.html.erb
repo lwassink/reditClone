@@ -8,14 +8,17 @@
 </head>
 <body>
   <header>
-    <%= render "layouts/login_logout" %>
     <%= errors %>
+    <% if logged_in? %>
+      <h3><%= "Welcome #{current_user.email}!" %></h3>
+    <% end %>
   </header>
 
   <%= yield %>
 
-  <footer>
+  <footer style="margin-top:300px">
     <%= link_to "All Subs", subs_url, method: :get %>
+    <%= render "layouts/login_logout" %>
   </footer>
 </body>
 </html>
