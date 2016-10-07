@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <%= render "layouts/login_logout" %>
+    <%= errors %>
+  </header>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
