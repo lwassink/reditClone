@@ -3,7 +3,7 @@
 
 <form action="<%= action %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
-  <input type="hidden" name="post[sub_id]" value="<%= post.sub_id %>">
+  <input type="hidden" name="post[sub_ids][]" value="">
   <%= auth_token %>
 
   <label>Title
@@ -21,6 +21,19 @@
   <label>Description <br>
     <textarea name="post[content]" rows="8" cols="40"><%= post.content %></textarea>
   </label>
+
+  <br>
+
+  <label>Subs: <br>
+    <% Sub.all.each do |sub| %>
+      <label><%= sub.title %>
+        <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"
+        <%= "checked" if post.sub_ids.include?(sub.id) %>>
+      </label><br>
+    <% end %>
+  </label>
+
+  <br>
 
   <input type="submit" value="Submit">
 </form>

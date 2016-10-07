@@ -11,4 +11,6 @@
 <%= render posts %>
 </ul>
 
-<%= button_to "Edit", edit_sub_url(@sub), method: :get %>
+<% if current_user == @sub.moderator %>
+  <%= button_to "Edit", edit_sub_url(@sub), method: :get %>
+<% end %>

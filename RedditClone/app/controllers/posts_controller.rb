@@ -6,9 +6,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.author_id = current_user.id
+    # fail
     if @post.valid?
       @post.save
-      redirect_to sub_url(@post.sub)
+      redirect_to root_url
     else
       flash.now[:errors] = @post.errors.full_messages
       render :new
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to sub_url(@post.sub)
+      redirect_to root_url
     else
       flash.now[:errors] = @post.errors.full_messages
       render :edit
@@ -35,21 +36,18 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post
-      sub = @post.sub
       @post.destroy
-      redirect_to sub_url(sub)
-    else
-      redirect_to root_url
     end
+    redirect_to :back
   end
 
   private
   def redirect_unless_author
     post = Post.find(params[:id])
-    redirect_to sub_url(post) unless post.author == current_user
+    redirect_to :back unless post.author == current_user
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
 end

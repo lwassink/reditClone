@@ -18,5 +18,9 @@ class Sub < ActiveRecord::Base
     class_name: :User
 
   has_many :posts,
+    through: :post_subs
+
+  has_many :post_subs,
+    inverse_of: :sub,
     dependent: :destroy
 end
