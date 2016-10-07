@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :subs,
     foreign_key: :moderator_id
 
+  has_many :posts,
+    foreign_key: :author_id
+
   def password= password
     @password = password
     self.password_digest = BCrypt::Password.create(password)

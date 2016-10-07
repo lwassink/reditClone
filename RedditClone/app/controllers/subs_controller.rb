@@ -4,6 +4,7 @@ class SubsController < ApplicationController
   end
 
   before_action :redirect_unless_logged_in, except: [:index, :show]
+  before_action :redirect_unless_author, only: [:edit, :update]
 
   def create
     @sub = Sub.new(sub_params)
@@ -42,5 +43,10 @@ class SubsController < ApplicationController
 
   def sub_params
     params.require(:sub).permit(:title, :description)
+  end
+
+  def redirect_unless_author
+    sub = Sub.find(params[:id])
+    redirect_to sub_url(sub) unless sub.moderator == current_user
   end
 end

@@ -4,4 +4,11 @@
   <%= @sub.description %>
 </p>
 
+<%= link_to "Post", new_sub_post_url(@sub) %>
+
+<% posts = @sub.posts %>
+<ul>
+<%= render posts %>
+</ul>
+
 <%= button_to "Edit", edit_sub_url(@sub), method: :get %>
