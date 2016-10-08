@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     resources :posts, only: [:new]
   end
 
-  resources :posts, except: [:index, :new, :show]
+  resources :posts, except: [:index, :new] do
+    resources :comments, only: [:new]
+  end
 
   root to: "subs#index"
+
+  resources :comments, except: [:index, :new]
 end

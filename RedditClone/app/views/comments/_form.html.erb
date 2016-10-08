@@ -1,0 +1,17 @@
+<% action = comment.persisted? ? comment_url(comment) : comments_url %>
+<% method = comment.persisted? ? "PATCH" : "POST" %>
+
+<form action="<%= action %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+
+  <input type="hidden" name="comment[post_id]" value="<%= comment.post_id %>">
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= comment.parent_comment_id %>">
+  <br>
+  <label>Content:<br>
+    <textarea name="comment[content]" rows="8" cols="40"><%= comment.content %></textarea>
+  </label>
+  <br>
+  <input type="submit" value="Submit">
+
+</form>

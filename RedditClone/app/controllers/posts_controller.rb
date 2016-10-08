@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     # fail
     if @post.valid?
       @post.save
-      redirect_to root_url
+      redirect_to post_url(@post)
     else
       flash.now[:errors] = @post.errors.full_messages
       render :new
@@ -19,6 +19,10 @@ class PostsController < ApplicationController
   def new
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def edit
     @post = Post.find(params[:id])
   end
@@ -26,7 +30,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to root_url
+      redirect_to post_url(@post)
     else
       flash.now[:errors] = @post.errors.full_messages
       render :edit

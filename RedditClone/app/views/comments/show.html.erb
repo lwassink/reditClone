@@ -1,0 +1,11 @@
+<h3> <%= link_to @comment.post.title, post_url(@comment.post), method: :get%></h3>
+<br>
+<p>
+  <%= @comment.content %>
+</p>
+<br>
+<p>
+
+  <%= render_child_comments(@comment) %>
+</p>
+<br>

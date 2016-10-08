@@ -1,0 +1,5 @@
+<h2>New Comment</h2>
+on <%= Post.find(params[:post_id]).title %>
+
+<%= render "form", comment: Comment.new(post_id: params[:post_id],
+  parent_comment_id: params[:parent_comment_id], content: "Content...") %>
