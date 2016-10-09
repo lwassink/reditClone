@@ -1,4 +1,4 @@
 <li>
-  <h4>author: <%= comment.author.name %></h4><br>
+  Author: <%= link_to comment.author.email, user_url(comment.author) %><br>
   <%= comment.content %>
 </li>

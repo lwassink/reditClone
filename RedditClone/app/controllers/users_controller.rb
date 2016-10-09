@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-
-  before_action :redirect_unless_logged_in, only: [:show]
-
   def create
     @user = User.new(user_params)
     if @user.valid?
@@ -18,8 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
-    @user = User.find_by_session_token(session[:session_token])
+    @user = User.find(params[:id])
   end
 
   private

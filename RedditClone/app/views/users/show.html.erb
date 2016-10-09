@@ -1,1 +1,7 @@
-<h1>Welcome <%= @user.email %>!</h1>
+<h2><%= @user.email %>!</h2>
+
+<h3>Posts</h3>
+<% @user.posts.each do |post| %>
+  <%= render post %>
+<% end %>
+

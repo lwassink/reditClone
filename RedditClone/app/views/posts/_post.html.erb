@@ -1,5 +1,6 @@
 <li>
-  <h3><%= link_to post.title, post_url(post) %></h3>
+  <%= link_to post.title, post_url(post) %>,
+  <%= link_to post.author.email, user_url(post.author) %>
 
 
   <a href="<%= post.url %>"><%= post.url %></a><br>

@@ -10,14 +10,14 @@
   <header>
     <%= errors %>
     <% if logged_in? %>
-      <h3><%= "Welcome #{current_user.email}!" %></h3>
+      <h3>Welcome <%= link_to current_user.email, user_url(current_user) %>!</h3>
     <% end %>
   </header>
 
   <%= yield %>
 
   <footer style="margin-top:100px">
-    <%= link_to "All Subs", subs_url, method: :get %>
+    <%= link_to "All Subs", subs_url, method: :get %>,
     <%= render "layouts/login_logout" %>
   </footer>
 </body>

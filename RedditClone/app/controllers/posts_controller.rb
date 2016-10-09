@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :redirect_unless_logged_in
+  before_action :redirect_unless_logged_in, except: [:show]
 
   before_action :redirect_unless_author, only: [:edit, :update, :destroy]
 
